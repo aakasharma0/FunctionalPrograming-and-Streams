@@ -1,0 +1,41 @@
+JAVA STREAM filter() — INTERVIEW NOTES
+
+1) What is filter()?
+- filter() is an INTERMEDIATE stream operation.
+- It is used to SELECT elements based on a condition.
+- It uses a Predicate (returns boolean).
+
+2) Method signature
+Stream<T> filter(Predicate<? super T> predicate)
+
+3) How filter() works
+- Each element is passed to the Predicate.
+- If Predicate returns true → element continues in the stream.
+- If Predicate returns false → element is discarded.
+
+4) Execution behavior
+- filter() is LAZY.
+- It does NOT execute until a terminal operation is called.
+- It processes elements ONE BY ONE (not in batch).
+
+5) Effect on source
+- filter() does NOT modify the original collection.
+- It creates a new stream pipeline.
+
+6) Performance characteristics
+- Supports short-circuiting.
+- Stops processing early when used with:
+  findFirst(), anyMatch(), limit()
+
+7) Multiple filters
+- Multiple filter() calls are merged internally.
+- Each element passes through all filters before moving forward.
+- No intermediate collections are created.
+
+8) Common interview points
+- filter() returns a Stream, not a Collection.
+- Predicate must be stateless and side-effect free (recommended).
+- filter() alone does nothing without a terminal operation.
+
+9) One-line interview answer
+- filter() applies a Predicate to each stream element and retains only those that satisfy the condition.

@@ -1,0 +1,56 @@
+JAVA STREAM flatMap() — INTERVIEW NOTES
+
+1) What is flatMap()?
+- flatMap() is an INTERMEDIATE stream operation.
+- It is used to transform AND flatten elements.
+- One input element can produce ZERO, ONE, or MANY output elements.
+
+2) Why flatMap() exists
+- Used when elements themselves contain:
+  - Collections (List, Set)
+  - Arrays
+  - Streams
+  - Optional values
+- map() would create nested streams (Stream<Stream<T>>).
+- flatMap() removes this nesting.
+
+3) Method signature
+<R> Stream<R> flatMap(Function<? super T, ? extends Stream<? extends R>> mapper)
+
+Key point:
+- The mapping function MUST return a Stream.
+
+4) How flatMap() works internally
+- Takes one element from the source stream.
+- Applies the mapping function to produce a Stream.
+- Opens (flattens) that Stream.
+- Passes individual elements downstream.
+- Repeats for next source element.
+
+5) Execution behavior
+- flatMap() is LAZY.
+- Executes only when a terminal operation is present.
+- Processes elements ONE BY ONE, not in batches.
+
+6) Effect on source data
+- Does NOT modify the original collection.
+- Produces a new flattened stream pipeline.
+
+7) Common use cases
+- List<List<T>> → Stream<T>
+- List<T[]> → Stream<T>
+- Map<K, List<V>> → Stream<V>
+- List<Optional<T>> → Stream<T>
+- Entity → related child entities
+
+8) map vs flatMap (core difference)
+- map(): transforms elements, preserves structure
+- flatMap(): transforms and removes nested structure
+
+9) Interview pitfalls
+- Returning non-stream values from flatMap (invalid).
+- Expecting flatMap to execute without terminal operation.
+- Confusing flatMap with map + collect.
+
+10) One-line interview answer
+- flatMap() transforms each element into a stream and flattens all resulting streams into a single stream.

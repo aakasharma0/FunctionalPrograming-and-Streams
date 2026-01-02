@@ -1,0 +1,70 @@
+JAVA STREAM sorted() — INTERVIEW NOTES
+
+1) What is sorted()?
+- sorted() is an INTERMEDIATE stream operation.
+- It is used to ORDER elements in a stream.
+- It does NOT remove duplicates.
+- It does NOT modify the source collection.
+
+2) Method variants
+- sorted()
+- sorted(Comparator<? super T> comparator)
+
+3) How sorted() decides order
+- sorted() WITHOUT arguments:
+  → Uses NATURAL ORDERING
+  → Class must implement Comparable
+  → Uses compareTo()
+
+- sorted(comparator):
+  → Uses the provided Comparator
+  → Comparable is NOT required
+
+4) What sorted() DOES NOT use (IMPORTANT)
+- sorted() does NOT use:
+  → equals()
+  → hashCode()
+
+Equality ≠ Ordering
+
+5) Execution behavior
+- sorted() is LAZY.
+- Sorting happens only when a terminal operation is invoked.
+- Unlike filter/map, sorted() needs to see ALL elements
+  → It is a STATEFUL operation.
+
+6) Performance characteristics
+- sorted() requires:
+  → buffering all elements
+  → O(n log n) time complexity
+- More expensive than filter(), map(), distinct()
+
+7) Ordering vs equality (INTERVIEW TRAP)
+- Two objects can be:
+  → equal according to equals()
+  → but ordered differently by compareTo()
+
+Java recommendation:
+- If compareTo() returns 0, equals() SHOULD return true
+- Not mandatory, but strongly recommended
+
+8) sorted() with custom objects
+- Either:
+  a) Implement Comparable in the class
+  b) Provide Comparator in the stream
+
+sorted() does NOT infer business logic automatically.
+
+9) sorted() and duplicates
+- sorted() keeps duplicates.
+- To remove duplicates:
+  → use distinct() before or after sorted()
+
+10) Common interview mistakes
+- Assuming sorted() removes duplicates
+- Thinking sorted() uses equals/hashCode
+- Forgetting Comparable when using sorted()
+- Ignoring performance cost of sorted()
+
+11) One-line interview answer
+- sorted() orders stream elements using Comparable or Comparator and does not rely on equals() or hashCode().

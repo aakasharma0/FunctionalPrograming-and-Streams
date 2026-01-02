@@ -1,0 +1,185 @@
+JAVA STREAM distinct() — INTERVIEW NOTES
+
+1) What is distinct()?
+- distinct() is an INTERMEDIATE stream operation.
+- It removes DUPLICATE elements from a stream.
+- It returns a stream containing only UNIQUE elements.
+
+2) How distinct() decides uniqueness
+- For OBJECT streams:
+  → Uses equals() and hashCode()
+- For PRIMITIVE streams (IntStream, LongStream, DoubleStream):
+  → Uses value equality
+
+3) Method signature
+Stream<T> distinct()
+
+4) Execution behavior
+- distinct() is LAZY.
+- It executes only when a terminal operation is invoked.
+- Elements are processed one by one.
+
+5) Internal working (high level)
+- Internally uses a HashSet to track already-seen elements.
+- If an element is already present → it is discarded.
+- First occurrence is kept, later duplicates are removed.
+
+6) Ordering behavior
+- For ORDERED streams (like List):
+  → Preserves encounter order.
+- For UNORDERED streams:
+  → Order is not guaranteed.
+
+7) Effect on source data
+- distinct() does NOT modify the original collection.
+- It creates a new stream pipeline.
+
+8) Usage with custom objects
+- Must override equals() and hashCode().
+- Without proper overrides, distinct() may not work as expected.
+
+9) distinct() vs Set
+- distinct(): removes duplicates DURING stream processing.
+- Set: removes duplicates by storing data.
+- distinct() is preferred in stream pipelines.
+
+10) Performance considerations
+- Requires additional memory (to track seen elements).
+- Works best when used after filter() to reduce data size.
+
+11) One-line interview definition
+- distinct() returns a stream consisting of unique elements based on equals() and hashCode() (or value equality for primitives).
+
+
+
+-JAVA STREAM distinct() — CUSTOM OBJECTS (INTERVIEW NOTES)
+
+1) How distinct() works with custom objects
+- distinct() relies on:
+  → equals()
+  → hashCode()
+- If these are NOT overridden, distinct() will NOT remove duplicates.
+
+Rule:
+Same hashCode + equals() = considered duplicate
+
+2) Default behavior (IMPORTANT TRAP)
+- By default, Object.equals() checks MEMORY ADDRESS.
+- So two objects with same data are treated as DIFFERENT.
+
+Example:
+new User(1, "A") ≠ new User(1, "A")   // if equals/hashCode not overridden
+
+3) Correct way: override equals() and hashCode()
+
+Example class:
+class User {
+    int id;
+    String name;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+        User u = (User) o;
+        return id == u.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Integer.hashCode(id);
+    }
+}
+
+Now:
+- Users with same id are treated as duplicates
+- distinct() works correctly
+
+4) What distinct() actually does internally
+- Maintains a HashSet of seen elements
+- For each element:
+  → hashCode() is checked
+  → equals() is checked if hash matches
+- If already present → element is dropped
+
+5) Order behavior
+- For ordered streams (List):
+  → First occurrence is kept
+- Later duplicates are removed
+
+6) Common interview mistakes
+- Forgetting to override hashCode()
+- Overriding equals() but not hashCode()
+- Using mutable fields in equals/hashCode()
+- Expecting distinct() to work like SQL DISTINCT automatically
+
+7) Best practices
+- Use IMMUTABLE fields in equals/hashCode()
+- Prefer unique identifiers (id, uuid)
+- Apply filter() before distinct() for performance
+
+8) Alternative approach (when you can’t modify class)
+- Use collectingAndThen + Set
+- Or use map() to extract unique key first
+
+But:
+- distinct() + proper equals/hashCode() is preferred
+
+9) One-line interview answer
+- For custom objects, distinct() removes duplicates based on equals() and hashCode() implementations.
+
+10) Interview-ready summary
+- distinct() does NOT magically detect duplicates.
+- It depends entirely on how equality is defined in the object.
+
+
+
+JAVA STREAM distinct() — HOW IT WORKS WITHOUT INPUT (NOTES)
+
+1) Common doubt
+- distinct() does not take any argument.
+- Question: how does it know what to work on?
+
+2) Core idea
+- distinct() operates on elements FLOWING through the stream.
+- Stream elements are passed automatically from the previous stage.
+
+3) Stream pipeline model
+Source → intermediate ops → distinct() → terminal op
+
+- Each element moves step by step through the pipeline.
+- distinct() receives elements implicitly, not via parameters.
+
+4) Internal working (conceptual)
+- distinct() maintains an internal Set (usually HashSet).
+- For each incoming element:
+  → If element is seen first time → allow
+  → If element is already seen → discard
+
+Pseudo logic:
+if (seenSet.add(element)) {
+    pass downstream
+} else {
+    drop element
+}
+
+5) Why no Predicate is required
+- filter() needs a condition (Predicate).
+- distinct() checks history, not a condition.
+- Equality logic comes from equals() and hashCode().
+
+6) Execution behavior
+- distinct() is an INTERMEDIATE operation.
+- It is LAZY.
+- It executes only when a terminal operation is invoked.
+
+7) Key interview insight
+- Intermediate operations do not take input explicitly.
+- Elements are supplied by the stream itself during execution.
+
+8) One-line interview answer
+- distinct() removes duplicates by tracking previously seen stream elements internally, without requiring explicit input parameters.
+
+
+
+By default, hashCode and equals are based on object identity (memory reference), not on business or domain logic.

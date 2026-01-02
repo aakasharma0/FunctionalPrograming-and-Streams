@@ -1,0 +1,10 @@
+Runnable  → do something
+Supplier  → produce something
+Function  → transform something // map
+Consumer  → consume something  
+Predicate → check / test something // filter
+
+
+
+distinct() → equality check → equals + hashCode
+sorted()   → ordering logic → compareTo / Comparator

@@ -1,0 +1,56 @@
+JAVA STREAM map() — INTERVIEW NOTES
+
+1) What is map()?
+- map() is an INTERMEDIATE stream operation.
+- It is used to TRANSFORM each element in a stream.
+- One input element produces exactly ONE output element.
+
+2) Method signature
+<R> Stream<R> map(Function<? super T, ? extends R> mapper)
+
+3) How map() works
+- Takes one element from the stream.
+- Applies the Function.
+- Emits the transformed element downstream.
+- Repeats for each element.
+
+4) Execution behavior
+- map() is LAZY.
+- Executes only when a terminal operation is invoked.
+- Processes elements ONE BY ONE.
+
+5) Key characteristics
+- map() does NOT filter elements.
+- map() does NOT flatten elements.
+- map() does NOT modify the source collection.
+- Output stream size == input stream size.
+
+6) Common use cases
+- Converting types (Entity → DTO)
+- Extracting fields (Object → field)
+- Applying calculations (x → x * 2)
+- Formatting data (Object → String)
+
+7) map() vs filter()
+- map(): transforms data
+- filter(): selects data
+
+map() always produces an output element.
+
+8) map() vs flatMap()
+- map(): one-to-one transformation
+- flatMap(): one-to-many transformation + flattening
+
+9) Performance characteristics
+- Lightweight operation.
+- Stateless (does not store history).
+- Can be safely used in parallel streams.
+
+10) Common interview pitfalls
+- Using map() for side effects (wrong)
+- Expecting map() to remove elements
+- Returning null unintentionally
+- Confusing map() with flatMap()
+
+11) One-line interview answer
+- map() applies a Function to each stream element and transforms it into a new element.
