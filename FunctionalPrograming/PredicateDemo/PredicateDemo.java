@@ -25,5 +25,14 @@ public class PredicateDemo {
         System.out.println("Is 'Functional' longer than 5? " + isLongerThan5.test("Functional")); // true
         System.out.println("Is 'Java' longer than 5? " + isLongerThan5.test("Java"));
 
+        // chaning predicates
+        Predicate<Integer> isPositive = x -> x > 0;
+        Predicate<Integer> idLessThanHundred = x -> x < 100;
+        Predicate<Integer> isPositiveAndLessThanHundred = isPositive.and(idLessThanHundred); // and
+
+        Predicate<Integer> isPositiveOrLessThanHundred = isPositive.or(idLessThanHundred); // or
+
+        Predicate<Integer> isNotPositive = isPositive.negate(); // negate
+
     }
 }

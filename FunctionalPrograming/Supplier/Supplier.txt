@@ -1,0 +1,51 @@
+JAVA Supplier — INTERVIEW NOTES
+
+1) What is Supplier?
+- Supplier is a FUNCTIONAL INTERFACE in java.util.function.
+- It represents a PROVIDER or PRODUCER of values.
+- It takes NO input and RETURNS a value.
+
+2) Method signature
+T get()
+
+3) Purpose of Supplier
+- Used when you want to supply data on demand.
+- Common for lazy value creation.
+
+4) Key characteristics
+- No arguments
+- Always returns a value
+- Can produce a new value on each call
+
+5) Where Supplier is used
+- Stream.generate()
+- Optional.orElseGet()
+- Lazy initialization
+- Factory methods
+
+6) Execution behavior
+- Supplier does nothing until get() is called.
+- get() can return different values on each call.
+
+7) Supplier in Streams
+- generate() uses Supplier to produce elements.
+- Example behavior:
+  → Supplier.get() called repeatedly to create stream elements
+
+8) Supplier vs others
+- Supplier → produce value
+- Consumer → consume value
+- Function → transform value
+- Predicate → test condition
+
+9) Supplier and side effects
+- Supplier may have side effects (allowed but not ideal).
+- Best practice: keep Supplier simple and predictable.
+
+10) Common interview mistakes
+- Expecting Supplier to take input
+- Using Supplier where Function is needed
+- Assuming Supplier is executed automatically
+
+11) One-line interview answer
+- Supplier is a functional interface that provides values without taking any input.

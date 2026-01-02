@@ -1,0 +1,53 @@
+JAVA Consumer — INTERVIEW NOTES
+
+1) What is Consumer?
+- Consumer is a FUNCTIONAL INTERFACE in java.util.function.
+- It represents an OPERATION that consumes input.
+- It takes ONE input and RETURNS NOTHING.
+
+2) Method signature
+void accept(T t)
+
+3) Purpose of Consumer
+- Used to perform actions or side effects.
+- Commonly used for printing, logging, updating state.
+
+4) Key characteristics
+- One input parameter
+- No return value
+- Designed for side-effect operations
+
+5) Where Consumer is used
+- Stream.forEach()
+- Optional.ifPresent()
+- Collection.forEach()
+- Callbacks and event handling
+
+6) Execution behavior
+- Consumer executes only when accept() is called.
+- In streams, executed during terminal operation.
+
+7) Consumer chaining (IMPORTANT)
+- andThen(Consumer<? super T> after)
+- Executes consumers sequentially.
+
+Meaning:
+consumer1.andThen(consumer2)
+
+8) Consumer vs others
+- Consumer → perform action
+- Predicate → check condition
+- Function → transform value
+- Supplier → produce value
+
+9) Consumer in Streams
+- forEach() internally calls consumer.accept(element).
+- Used at the END of stream pipelines.
+
+10) Common interview mistakes
+- Expecting Consumer to return a value
+- Using Consumer for transformation logic
+- Heavy business logic inside Consumer
+
+11) One-line interview answer
+- Consumer is a functional interface that accepts an input and performs an action without returning a result.
