@@ -58,3 +58,9 @@ p1.negate() → reverse result
 
 12) One-line interview answer
 - Predicate represents a boolean-valued function used to test conditions on objects.
+
+
+and()    → combine with AND
+or()     → combine with OR
+negate() → reverse condition
+isEqual()→ equality check
