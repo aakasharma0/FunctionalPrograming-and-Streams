@@ -2,8 +2,6 @@ package IntermidiateFunctionExamples.Filter;
 
 import java.util.List;
 
-import IntermidiateFunctionExamples.Map.FuntionalDemo;
-
 public class FilterDemo {
 
     public static void main(String[] args) {

@@ -1,0 +1,60 @@
+JAVA Predicate — INTERVIEW NOTES
+
+1) What is Predicate?
+- Predicate is a FUNCTIONAL INTERFACE in java.util.function.
+- It represents a CONDITION or TEST.
+- It takes ONE input and returns a BOOLEAN.
+
+2) Method signature
+boolean test(T t)
+
+3) Purpose of Predicate
+- Used to check whether an element satisfies a condition.
+- Commonly used for filtering logic.
+
+4) Where Predicate is used
+- Stream.filter()
+- Collection removeIf()
+- Optional.filter()
+- Custom conditional logic
+
+5) Execution behavior
+- Predicate itself does NOT execute anything.
+- It is executed when called by a method like filter() or test().
+
+6) Predicate and Streams
+- filter() internally calls predicate.test(element).
+- If true → element is allowed.
+- If false → element is rejected.
+
+7) Predicate chaining methods (IMPORTANT)
+- and(Predicate other)
+- or(Predicate other)
+- negate()
+
+Example logic:
+p1.and(p2) → both true
+p1.or(p2) → any true
+p1.negate() → reverse result
+
+8) Predicate characteristics
+- Stateless (recommended)
+- Side-effect free (best practice)
+- Reusable
+
+9) Predicate vs Function vs Consumer
+- Predicate → test condition → boolean
+- Function → transform value → output
+- Consumer → perform action → no output
+
+10) Predicate with custom objects
+- Uses object fields inside test().
+- Works independently of equals() / hashCode().
+
+11) Common interview mistakes
+- Using Predicate for transformation (wrong)
+- Putting side effects inside Predicate
+- Forgetting Predicate returns boolean
+
+12) One-line interview answer
+- Predicate represents a boolean-valued function used to test conditions on objects.

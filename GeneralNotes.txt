@@ -1,6 +1,6 @@
 Runnable  → do something
 Supplier  → produce something
-Function  → transform something // map
+Function  → transform something  // map
 Consumer  → consume something  
 Predicate → check / test something // filter
 
@@ -8,3 +8,6 @@ Predicate → check / test something // filter
 
 distinct() → equality check → equals + hashCode
 sorted()   → ordering logic → compareTo / Comparator
+
+
+java 8 --  was about minimal code writing ,s till maintiang the oops funcdamentals  .lamda expressions ,Streams , Date And time 

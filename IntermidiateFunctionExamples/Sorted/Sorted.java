@@ -10,5 +10,8 @@ public class Sorted {
         numbers.stream()
                 .sorted()
                 .forEach(System.out::println);
+        numbers.stream()
+                .sorted((a, b) -> b - a) // passing comparator for descending order
+                .forEach(System.out::println);
     }
 }

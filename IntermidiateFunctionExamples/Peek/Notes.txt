@@ -1,0 +1,52 @@
+JAVA STREAM peek() — INTERVIEW NOTES
+
+1) What is peek()?
+- peek() is an INTERMEDIATE stream operation.
+- It is used to OBSERVE elements flowing through the stream.
+- Primarily meant for DEBUGGING.
+
+2) Method signature
+Stream<T> peek(Consumer<? super T> action)
+
+3) How peek() works
+- Receives each element as it flows through the stream.
+- Executes the Consumer.
+- Passes the SAME element downstream unchanged.
+
+4) Execution behavior
+- peek() is LAZY.
+- Executes only when a terminal operation is invoked.
+- Processes elements ONE BY ONE.
+
+5) What peek() is NOT for (IMPORTANT)
+- NOT for business logic
+- NOT for modifying elements
+- NOT a replacement for forEach()
+
+6) peek() vs forEach()
+- peek(): intermediate, debugging, non-terminal
+- forEach(): terminal, performs final action
+
+peek() alone does NOTHING.
+
+7) Side effects warning (INTERVIEW TRAP)
+- peek() allows side effects but SHOULD NOT be relied upon.
+- Using peek() for mutation leads to unpredictable behavior.
+- Especially dangerous in parallel streams.
+
+8) Common valid use cases
+- Logging
+- Debugging stream pipelines
+- Monitoring intermediate values
+
+9) Common interview mistakes
+- Using peek() to change object state
+- Expecting peek() to execute without terminal operation
+- Treating peek() as mandatory for streams
+
+10) Best practice
+- Use peek() ONLY for debugging.
+- Remove peek() from production code.
+
+11) One-line interview answer
+- peek() is an intermediate operation used to observe stream elements without modifying them, mainly for debugging.
