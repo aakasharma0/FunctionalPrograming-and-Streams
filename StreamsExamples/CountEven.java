@@ -19,6 +19,7 @@ public class CountEven {
         int evenCount = (int) numbers.stream()
                 .filter((x) -> x % 2 == 0)
                 .count();
+
         System.out.println(numbers.stream().filter((x) -> x % 2 == 0).count());
 
     }
