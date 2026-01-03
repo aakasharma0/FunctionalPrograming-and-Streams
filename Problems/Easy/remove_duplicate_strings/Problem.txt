@@ -1,0 +1,25 @@
+Problem:
+Given a list of strings, remove duplicate values while preserving the original order.
+
+Input:
+List<String> names = List.of(
+    "Akash",
+    "Raj",
+    "Akash",
+    "Amit",
+    "Raj",
+    "John"
+);
+
+Expected Output:
+["Akash", "Raj", "Amit", "John"]
+
+Constraints:
+- Do not use loops
+- Preserve insertion order
+- Use Java 8 Stream API only
+
+Concepts Tested:
+- distinct
+- Stream ordering
+- Equality (equals & hashCode)

@@ -1,0 +1,27 @@
+Problem:
+Given a sentence, count the frequency of each word using Java Streams.
+
+Input:
+String sentence = "hello java hello streams java java";
+
+Expected Output:
+{
+hello = 2,
+java = 3,
+streams = 1
+}
+
+Rules:
+
+- Case insensitive
+- Ignore extra spaces
+- Do not use loops
+- Use Java 8 Stream API only
+
+Concepts Tested:
+
+- split
+- map
+- groupingBy
+- counting
+- String normalization

@@ -3,6 +3,7 @@ package StreamsExamples;
 import java.util.List;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class TerminalOperations {
 
@@ -44,5 +45,24 @@ public class TerminalOperations {
         // findAny - returns any element from the stream (useful in parallel streams)
         Integer any = numbers.stream().findAny().orElse(-1);
         System.out.println("Any element is: " + any);
+
+        // 7 to Array() - converts the stream to an array
+        Integer[] numArray = numbers.stream().toArray(Integer[]::new);
+
+        // 8 min , max : returns min and max element based on comparator
+        Integer min = numbers.stream().min((x, y) -> x - y).orElse(-1);
+        System.out.println("Min element is: " + min);
+
+        Integer max = numbers.stream().max((x, y) -> x - y).orElse(-1);
+        System.out.println("Max element is: " + max);
+
+        // 9 foreachOrdered() - performs action for each element in encounter order
+
+        System.out.println("Demo of forEachOrdered:");
+        List<Integer> nums = Stream.iterate(2, (x) -> x + 2).limit(100).toList();
+        System.out.println("Using forEach:");
+        nums.parallelStream().forEach(System.out::println);
+        System.out.println("Using forEachOrdered:");
+        nums.parallelStream().forEachOrdered(System.out::println);
     }
 }

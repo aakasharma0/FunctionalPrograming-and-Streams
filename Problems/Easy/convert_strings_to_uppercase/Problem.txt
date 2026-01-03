@@ -1,0 +1,22 @@
+Problem:
+Given a list of strings, convert all strings to uppercase using Java Streams.
+
+Input:
+List<String> names = List.of(
+    "akash",
+    "amit",
+    "raj",
+    "john"
+);
+
+Expected Output:
+["AKASH", "AMIT", "RAJ", "JOHN"]
+
+Constraints:
+- Do not use loops
+- Use Java 8 Stream API only
+
+Concepts Tested:
+- map
+- Function
+- Transformation vs filtering

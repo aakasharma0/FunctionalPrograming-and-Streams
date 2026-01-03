@@ -1,0 +1,28 @@
+Problem:
+Given a list of strings, count how many strings start with a given prefix.
+
+Input:
+List<String> names = List.of(
+    "Akash",
+    "Amit",
+    "Ajay",
+    "Raj",
+    "Ankit",
+    "John"
+);
+
+Prefix:
+"A"
+
+Expected Output:
+4
+
+Constraints:
+- Do not use loops
+- Use Java 8 Stream API only
+
+Concepts Tested:
+- filter
+- Predicate
+- count
+- Terminal vs intermediate operations

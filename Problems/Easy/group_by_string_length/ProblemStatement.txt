@@ -1,0 +1,33 @@
+Problem:
+Given a list of strings, group the strings by their length using Java Streams.
+
+Input:
+List<String> names = List.of(
+    "Akash",
+    "Raj",
+    "Amit",
+    "John",
+    "Ajay"
+);
+
+Expected Output:
+{
+  3 = ["Raj"],
+  4 = ["Amit", "John", "Ajay"],
+  5 = ["Akash"]
+}
+
+Constraints:
+- Do not use loops (for / while)
+- Do not use external libraries
+- Use Java 8 Stream API only
+
+Concepts Tested:
+- stream()
+- Collectors.groupingBy
+- Classifier function
+- Map<Integer, List<String>>
+
+
+follow up
+How would you group by length and count how many strings are of each length?

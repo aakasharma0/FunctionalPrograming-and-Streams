@@ -61,6 +61,35 @@ public class IntermidiateOps {
         names.stream().skip(3).limit(3)
                 .forEach(System.out::println);
 
+        // 7) peek example
+        count = names.stream().filter((x) -> x.startsWith("a")).map((x) -> x.toUpperCase())
+                .peek((x) -> System.out.println("After map: " + x))
+                .map(x -> x.toLowerCase()).peek((x) -> System.out.println(x))
+                .count();
+        System.out.println("Final count: " + count);
+
+        // 8) flatMap example
+        List<List<String>> listOfLists = Arrays.asList(
+                Arrays.asList("akash", "sharma"),
+                Arrays.asList("john", "doe"),
+                Arrays.asList("alice", "bob"));
+
+        listOfLists.stream().flatMap((x) -> x.stream()).map(x -> x.toUpperCase())
+                .forEach(System.out::println);
+
+        List<String[]> arrayOfArrays = Arrays.asList(
+                new String[] { "one", "two" },
+                new String[] { "three", "four" },
+                new String[] { "five", "six" });
+
+        arrayOfArrays.stream().flatMap((x) -> Arrays.stream(x)).forEach(System.out::println);
+
+        arrayOfArrays.stream().map((x) -> Arrays.stream(x))
+                .forEach(System.out::println);
+        // map sirf values ko transform karta hai, structure same rehta hai.
+        // flatMap values ko transform karta hai aur inner collections/streams ko
+        // flatten (iterate) kar deta hai.
+
     }
 
 }
